@@ -41,7 +41,7 @@ app.collections.Stream = Backbone.Collection.extend({
 				model.set(data);
 				return;
 			}
-			var model = new app.models.Text(data);
+			model = new app.models.Text(data);
 			var view = new app.views.Text({
 				model: model
 			});
