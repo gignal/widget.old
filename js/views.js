@@ -1,3 +1,31 @@
+app.views.Event = Backbone.View.extend({
+
+	el: '#gignal',
+	
+	initialize: function () {
+		// Masonry options
+		this.$el.masonry({
+			itemSelector: '.gig-outerbox',
+			isFitWidth: false,
+			isAnimated: true,
+			animationOptions: {
+				duration: 750,
+				easing: 'linear',
+				queue: false
+			}
+		});
+	}
+
+	// imagesLoaded: function () {
+	// 	// hack to make photo box fit
+	// 	this.$el.masonry({
+	// 		itemSelector: '.gig-outerbox'
+	// 	});
+	// }
+
+});
+
+
 app.views.Text = Backbone.View.extend({
 
 	events: {},
@@ -5,21 +33,18 @@ app.views.Text = Backbone.View.extend({
 	className: 'gig-outerbox',
 
 	initialize: function () {
-		// this.model.on('change', this.render, this);
-		// this.model.on('destroy', this.remove, this);
 		this.render();
 	},
 
 	render: function () {
-		$(this.el).html(app.templates['text.mustache'](this.model.toJSON()));
-		$(app.el).append(this.el).masonry('reload');
+		this.$el.html(app.templates['text'](this.model.toJSON()));
 		return this;
 	}
 
 });
 
 
-app.views.Image = Backbone.View.extend({
+app.views.Photo = Backbone.View.extend({
 
 	events: {},
 
@@ -30,8 +55,7 @@ app.views.Image = Backbone.View.extend({
 	},
 
 	render: function () {
-		$(this.el).html(app.templates['image.mustache'](this.model.toJSON()));
-		$(app.el).append(this.el).masonry('reload');
+		this.$el.html(app.templates['image'](this.model.toJSON()));
 		return this;
 	}
 

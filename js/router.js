@@ -5,13 +5,10 @@ app.Router = Backbone.Router.extend({
 	},
 
 	event: function (id) {
-		app.event_id = id;
-		app.stream.fetch({
-			add: false,
-			dataType: 'json',
-			cache: true,
-			timeout: 10000
+		app.event = new app.models.Event({
+			id: id
 		});
+		app.stream = new app.collections.Stream();
 	}
 
 });

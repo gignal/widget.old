@@ -1,23 +1,22 @@
-app.models.Text = Backbone.Model.extend({
-		
-	idAttribute: 'text_stream_id',
+app.models.Event = Backbone.Model.extend({
 
-	initialize: function () {
-		new app.views.Text({
-			model: this
-		});
-	}
+	urlRoot: 'http://api.gignal.com/event/api/eventId/', // CloudFront
+	//urlRoot: 'http://gignal.com/event/api/eventId/', // direct
+
+	idAttribute: 'event_id'
 	
 });
+
+
+app.models.Text = Backbone.Model.extend({
 	
-app.models.Image = Backbone.Model.extend({
-		
-	idAttribute: 'photo_stream_id',
+	idAttribute: 'text_stream_id'
 	
-	initialize: function () {
-		new app.views.Image({
-			model: this
-		});
-	}
+});
+
+	
+app.models.Photo = Backbone.Model.extend({
+
+	idAttribute: 'photo_stream_id'
 	
 });
