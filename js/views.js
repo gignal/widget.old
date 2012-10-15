@@ -6,7 +6,6 @@ app.views.Event = Backbone.View.extend({
 		// Masonry options
 		this.$el.masonry({
 			itemSelector: '.gig-outerbox',
-			isFitWidth: false,
 			isAnimated: true,
 			animationOptions: {
 				duration: 750,

@@ -10,6 +10,7 @@ app.collections.Stream = Backbone.Collection.extend({
 	
 	initialize: function () {
 		this.update();
+		this.setInterval();
 	},
 
 	url: function () {
@@ -34,8 +35,13 @@ app.collections.Stream = Backbone.Collection.extend({
 		var models = [];
 		var views = [];
 		// Text
-		_.each(response.text, function (item) {
-			var model = new app.models.Text(item);
+		_.each(response.text, function (data) {
+			var model = self.get(data.text_stream_id);
+			if (typeof model !== 'undefined') {
+				model.set(data);
+				return;
+			}
+			var model = new app.models.Text(data);
 			var view = new app.views.Text({
 				model: model
 			});
@@ -46,8 +52,13 @@ app.collections.Stream = Backbone.Collection.extend({
 			}
 		});
 		// Photos
-		_.each(response.photos, function (item) {
-			var model = new app.models.Photo(item);
+		_.each(response.photos, function (data) {
+			var model = self.get(data.photo_stream_id);
+			if (typeof model !== 'undefined') {
+				model.set(data);
+				return;
+			}
+			model = new app.models.Photo(data);
 			var view = new app.views.Photo({
 				model: model
 			});
@@ -61,6 +72,7 @@ app.collections.Stream = Backbone.Collection.extend({
 		var views_sorted = _.sortBy(views, function (item) {
 			return self.comparator(item.model);
 		});
+		// prepend views
 		_.each(views_sorted, function (view) {
 			app.view.$el.prepend(view.el);
 		});
@@ -69,7 +81,7 @@ app.collections.Stream = Backbone.Collection.extend({
 		return models;
 	},
 
-	update: function () {
+	update: function (self) {
 		var self = this;
 		if (this.calling) {
 			return;
@@ -80,10 +92,10 @@ app.collections.Stream = Backbone.Collection.extend({
 			cache: true,
 			timeout: 10000,
 			data: {
-				limit: this.parameters.limit,
-				sinceIdPhoto: this.parameters.sinceIdPhoto,
-				sinceIdText: this.parameters.sinceIdText,
-				cid: this.parameters.cid++
+				limit: self.parameters.limit,
+				sinceIdPhoto: self.parameters.sinceIdPhoto,
+				sinceIdText: self.parameters.sinceIdText,
+				cid: self.parameters.cid++
 			},
 			success: function () {
 				self.calling = false;
@@ -95,7 +107,10 @@ app.collections.Stream = Backbone.Collection.extend({
 	},
 
 	setInterval: function () {
-		this.intervalID = window.setInterval(this.update, 4000);
+		var self = this;
+		this.intervalID = window.setInterval(function () {
+			self.update();
+		}, 4000);
 	}
 	
 });
