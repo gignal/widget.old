@@ -5,8 +5,8 @@ UglifyJS = require 'uglify-js2'
 
 run = (cmd, callback) ->
 	exec cmd, (err, stdout, stderr) ->
-		return callback err if err?
-		console.log stdout + stderr
+		#return callback err if err?
+		console.log err, stdout + stderr
 		callback err, stdout + stderr
 
 
