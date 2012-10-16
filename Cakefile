@@ -1,7 +1,7 @@
 fs = require 'fs'
 {exec} = require 'child_process'
 UglifyJS = require 'uglify-js2'
-git  = require 'gift-plus'
+git = require 'gift-plus'
 
 
 run = (cmd) ->
