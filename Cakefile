@@ -47,7 +47,7 @@ task 'deploy', 'Push to server', ->
 	repo.checkout 'gh-pages', (err) ->
 		return console.error err if err? 
 		#repo.checkout 'master', files.main.join ' ', (err) ->
-		run 'git checkout <branch_name> -- ' + files.main.join ' ', (err) ->
+		run 'git checkout master -- ' + files.main.join ' ', (err) ->
 			return console.error err if err?
 			console.log files.main.join ' '
 			repo.commit 'wip', (err) ->
