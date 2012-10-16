@@ -2,17 +2,17 @@
 
 Open static.gignal.com/widget/#event/[event ID]
 
-## Prerequisites
+### Prerequisites
 
 You need [Bower](http://twitter.github.com/bower/).
 
 	npm install bower
 
-## Install
+### Install
 
 	bower install gignal-widget
 
-## Customize
+### Customize
 
 * npm install
 * bower install
