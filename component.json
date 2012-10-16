@@ -11,14 +11,11 @@
 		"name": "Jacob Friis Saxberg",
 		"email": "jacob@saxberg.dk"
 	},
-    "contributors": [],
 	"dependencies": {
 		"jquery": "1.8",
 		"backbone": "0.9",
 		"jquery-masonry": "2.1",
 		"handlebars": "1"
 	},
-	"main": [
-		"./js/main.js"
-	]
+	"main": ["index.html", "lib/style.css", "lib/all.min.js"]
 }
