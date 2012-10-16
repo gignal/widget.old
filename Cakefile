@@ -39,6 +39,5 @@ task 'compress', 'Uglify JavaScript', ->
 
 task 'deploy', 'Push to server', ->
 	repo = git '.'
-	repo.checkout 'gh-pages', (err, msg) ->
+	repo.checkout 'gh-pages', (err) ->
 		return console.error err if err? 
-		console.log msg
