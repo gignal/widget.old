@@ -10,6 +10,7 @@ app.collections.Stream = Backbone.Collection.extend({
 	
 	initialize: function () {
 		this.update();
+		this.setIntervalUpdate();
 	},
 
 	url: function () {
@@ -25,17 +26,19 @@ app.collections.Stream = Backbone.Collection.extend({
 		// set event data
 		app.event.set(response.event);
 		// any nodes?
-		if (response.text.length === 0 && response.photos.length === 0) {
-			return;
-		}
-		// reset cache id
-		this.parameters.cid = 0;
+		// if (response.text.length === 0 && response.photos.length === 0) {
+		// 	return;
+		// }
 		// build models
 		var models = [];
 		var views = [];
 		// Text
 		_.each(response.text, function (item) {
-			var model = new app.models.Text(item);
+			var model = self.get(item.text_stream_id);
+			if (typeof model !== 'undefined') {
+				return;
+			}
+			model = new app.models.Text(item);
 			var view = new app.views.Text({
 				model: model
 			});
@@ -47,7 +50,11 @@ app.collections.Stream = Backbone.Collection.extend({
 		});
 		// Photos
 		_.each(response.photos, function (item) {
-			var model = new app.models.Photo(item);
+			var model = self.get(item.photo_stream_id);
+			if (typeof model !== 'undefined') {
+				return;
+			}
+			model = new app.models.Photo(item);
 			var view = new app.views.Photo({
 				model: model
 			});
@@ -57,6 +64,10 @@ app.collections.Stream = Backbone.Collection.extend({
 				self.parameters.sinceIdPhoto = model.id;
 			}
 		});
+		// any data?
+		if (views.length === 0) {
+			return []
+		}
 		// sort views
 		var views_sorted = _.sortBy(views, function (item) {
 			return self.comparator(item.model);
@@ -64,7 +75,9 @@ app.collections.Stream = Backbone.Collection.extend({
 		_.each(views_sorted, function (view) {
 			app.view.$el.prepend(view.el);
 		});
-		app.view.$el.masonry('reload');
+		app.view.refresh();
+		// reset cache id
+		this.parameters.cid = 0;
 		// feed collection
 		return models;
 	},
@@ -94,8 +107,10 @@ app.collections.Stream = Backbone.Collection.extend({
 		});
 	},
 
-	setInterval: function () {
-		this.intervalID = window.setInterval(this.update, 4000);
+	setIntervalUpdate: function () {
+		this.intervalID = window.setInterval(function(){
+			app.stream.update();
+		}, 4500);
 	}
 	
 });

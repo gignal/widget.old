@@ -14,14 +14,15 @@ app.views.Event = Backbone.View.extend({
 				queue: false
 			}
 		});
-	}
+	},
 
-	// imagesLoaded: function () {
-	// 	// hack to make photo box fit
-	// 	this.$el.masonry({
-	// 		itemSelector: '.gig-outerbox'
-	// 	});
-	// }
+	refresh: function () {
+		this.$el.masonry('reload');
+		// hack to make photo box fit
+		this.$el.masonry({
+			itemSelector: '.gig-outerbox'
+		});
+	}
 
 });
 
