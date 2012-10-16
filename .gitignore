@@ -1,4 +1,5 @@
 .DS_Store
 .tm_properties
+components
 node_modules
 Cakefile
