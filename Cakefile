@@ -1,6 +1,7 @@
 fs = require 'fs'
 {exec} = require 'child_process'
 UglifyJS = require 'uglify-js2'
+stylus = require 'stylus'
 
 
 run = (cmd, callback) ->
@@ -26,6 +27,9 @@ files =
 		'js/app.js'
 	]
 	out: 'lib/all.min.js'
+	css:
+		in: 'css/style.stylus'
+		out: 'lib/style.css'
 	main: [
 		'lib/style.css'
 		'lib/all.min.js'
@@ -38,6 +42,15 @@ task 'compress', 'Compress JavaScript', ->
 	result = UglifyJS.minify files.in
 	fs.writeFile files.out, result.code, (err) ->
 		console.error err if err?
+
+
+task 'stylus', 'Compress Stylus', ->
+	stylusSrc = fs.readFileSync files.css.in, 'utf8'
+	options = {}
+	stylus.render stylusSrc, options, (err, css) ->
+		return console.error err if err?
+		fs.writeFile files.css.out, result.code, (err) ->
+			console.error err if err?
 
 
 task 'deploy', 'Push to server', ->

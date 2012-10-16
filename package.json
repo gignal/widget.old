@@ -6,6 +6,6 @@
 		"coffee-script": "0.7.x",
 		"uglify-js2": "2.0.x",
 		"handlebars": "1.0.x",
-		"gift": "0.0.x"
+		"stylus": "0.30.x"
 	}
 }
