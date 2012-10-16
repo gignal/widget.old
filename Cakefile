@@ -34,5 +34,6 @@ task 'compress', 'Uglify JavaScript', ->
 
 
 task 'deploy', 'Push to server', ->
+	run 'git checkout gh-pages'
 	run 'git commit -a'
 	run 'git push origin gh-pages'
