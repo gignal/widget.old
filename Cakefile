@@ -1,7 +1,7 @@
 fs = require 'fs'
 {exec} = require 'child_process'
 UglifyJS = require 'uglify-js2'
-git  = require 'gift'
+git  = require 'gift-plus'
 
 
 run = (cmd) ->
@@ -47,8 +47,7 @@ task 'deploy', 'Push to server', ->
 	repo.checkout 'gh-pages', (err) ->
 		return console.error err if err? 
 		repo.checkout 'master', files.main.join ' ', (err) ->
-			console.log typeof err
-			return console.error err if err
+			return console.error err if err?
 			console.log files.main.join ' '
 			repo.commit 'wip', (err) ->
 				return console.error err if err?
