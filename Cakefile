@@ -48,6 +48,7 @@ task 'deploy', 'Push to server', ->
 		return console.error err if err? 
 		repo.checkout 'master', files.main.join ' ', (err) ->
 			return console.error err if err?
+			console.log files.main.join ' '
 			repo.commit 'wip', (err) ->
 				return console.error err if err?
 				run 'git push', (err) ->
