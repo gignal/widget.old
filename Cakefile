@@ -1,13 +1,13 @@
 fs = require 'fs'
-#{exec} = require 'child_process'
+{exec} = require 'child_process'
 UglifyJS = require 'uglify-js2'
 git  = require 'gift'
 
 
-# run = (cmd) ->
-# 	exec cmd, (err, stdout, stderr) ->
-# 		throw err if err?
-# 		console.log stdout + stderr
+run = (cmd) ->
+	exec cmd, (err, stdout, stderr) ->
+		throw err if err?
+		console.log stdout + stderr
 
 
 files = 
@@ -28,10 +28,16 @@ files =
 		'js/router.js'
 		'js/app.js'
 	]
-	out: 'all.min.js'
+	out: 'lib/all.min.js'
+	main: [
+		'lib/style.css'
+		'lib/all.min.js'
+		'index.html'
+	]
 
 
-task 'compress', 'Uglify JavaScript', ->
+# todo: handlebars
+task 'compress', 'Compress JavaScript', ->
 	result = UglifyJS.minify files.in
 	fs.writeFile files.out, result.code, (err) ->
 		console.error err if err?
@@ -41,3 +47,9 @@ task 'deploy', 'Push to server', ->
 	repo = git '.'
 	repo.checkout 'gh-pages', (err) ->
 		return console.error err if err? 
+		repo.checkout 'master', files.main.join ' ', (err) ->
+			return console.error err if err?
+			repo.commit 'wip', (err) ->
+				return console.error err if err?
+				run 'git push', (err) ->
+					return console.error err if err?
