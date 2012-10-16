@@ -5,8 +5,6 @@ UglifyJS = require 'uglify-js2'
 
 run = (cmd, callback) ->
 	exec cmd, (err, stdout, stderr) ->
-		#return callback err if err?
-		console.log err, stdout + stderr
 		callback err, stdout + stderr
 
 
@@ -43,14 +41,14 @@ task 'compress', 'Compress JavaScript', ->
 
 
 task 'deploy', 'Push to server', ->
-	run 'git checkout gh-pages', (err) ->
-		return console.error err if err? 
+	run 'git checkout gh-pages', (err, msg) ->
+		return console.error err, msg if err? 
 		cmd = 'git checkout master -- ' + files.main.join ' '
-		run cmd, (err) ->
-			return console.error err if err?
-			run 'git commit -am "updates from master"', (err) ->
-				return console.error err if err?
-				run 'git push origin gh-pages', (err) ->
-					return console.error err if err?
-					run 'git checkout master', (err) ->
-						return console.error err if err? 
+		run cmd, (err, msg) ->
+			return console.error err, msg if err?
+			run 'git commit -am "updates from master"', (err, msg) ->
+				return console.error err, msg if err?
+				run 'git push origin gh-pages', (err, msg) ->
+					return console.error err, msg if err?
+					run 'git checkout master', (err, msg) ->
+						return console.error err, msg if err? 
