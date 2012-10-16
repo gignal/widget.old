@@ -1,14 +1,19 @@
 # Gignal widget
 
+Open static.gignal.com/widget/#event/[event ID]
+
 ## Prerequisites
 
-You need **npm** a.k.a. [Node Packaged Modules](https://npmjs.org/).
+You need [Bower](http://twitter.github.com/bower/).
 
-## Setup
+	npm install bower
 
-* npm install bower handlebars -g
-* bower install
+## Install
+
+	bower install gignal-widget
 
 ## Customize
 
+* npm install
+* bower install
 * handlebars -o templates/*.handlebars -f js/templates.js
