@@ -1,7 +1,6 @@
 fs = require 'fs'
 {exec} = require 'child_process'
 UglifyJS = require 'uglify-js2'
-git = require 'gift'
 
 
 run = (cmd, callback) ->
@@ -43,15 +42,14 @@ task 'compress', 'Compress JavaScript', ->
 
 
 task 'deploy', 'Push to server', ->
-	repo = git '.'
-	repo.checkout 'gh-pages', (err) ->
+	run 'git checkout gh-pages', (err) ->
 		return console.error err if err? 
 		cmd = 'git checkout master -- ' + files.main.join ' '
 		run cmd, (err) ->
 			return console.error err if err?
-			repo.commit 'updates from master', (err) ->
+			run 'git commit -am "updates from master"', (err) ->
 				return console.error err if err?
 				run 'git push origin gh-pages', (err) ->
 					return console.error err if err?
-					repo.checkout 'master', (err) ->
+					run 'git checkout master', (err) ->
 						return console.error err if err? 
