@@ -54,3 +54,5 @@ task 'deploy', 'Push to server', ->
 				return console.error err if err?
 				run 'git push origin gh-pages', (err) ->
 					return console.error err if err?
+					repo.checkout 'master', (err) ->
+						return console.error err if err? 
