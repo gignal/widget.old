@@ -18,7 +18,6 @@ files =
 		'components/underscore/underscore-min.js'
 		'components/backbone/backbone-min.js'
 		'components/handlebars.js/handlebars.runtime-1.0.0-rc.1.js'
-
 		# app
 		'js/templates.js'
 		'js/init.js'
