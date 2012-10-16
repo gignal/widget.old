@@ -26,12 +26,10 @@ app.collections.Stream = Backbone.Collection.extend({
 		// set event data
 		app.event.set(response.event);
 		// any nodes?
-		if (response.text.length === 0 && response.photos.length === 0) {
-			return;
-		}
-		// reset cache id
-		this.parameters.cid = 0;
-		// build models
+		// if (response.text.length === 0 && response.photos.length === 0) {
+		// 	return [];
+		// }
+		// build models and views
 		var models = [];
 		var views = [];
 		// Text
@@ -68,6 +66,10 @@ app.collections.Stream = Backbone.Collection.extend({
 				self.parameters.sinceIdPhoto = model.id;
 			}
 		});
+		// any data?
+		if (views.length === 0) {
+			return [];
+		}
 		// sort views
 		var views_sorted = _.sortBy(views, function (item) {
 			return self.comparator(item.model);
@@ -77,11 +79,13 @@ app.collections.Stream = Backbone.Collection.extend({
 			app.view.$el.prepend(view.el);
 		});
 		app.view.$el.masonry('reload');
+		// reset cache id
+		this.parameters.cid = 0;
 		// feed collection
 		return models;
 	},
 
-	update: function (self) {
+	update: function () {
 		var self = this;
 		if (this.calling) {
 			return;
@@ -107,10 +111,9 @@ app.collections.Stream = Backbone.Collection.extend({
 	},
 
 	setInterval: function () {
-		var self = this;
-		this.intervalID = window.setInterval(function () {
-			self.update();
-		}, 4000);
+		this.intervalID = window.setInterval(function(){
+			app.stream.update();
+		}, 4500);
 	}
 	
 });
