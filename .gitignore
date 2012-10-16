@@ -1,2 +1,4 @@
 .DS_Store
+.tm_properties
 node_modules
+Cakefile
