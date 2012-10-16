@@ -48,8 +48,9 @@ task 'deploy', 'Push to server', ->
 		return console.error err if err? 
 		#repo.checkout 'master', files.main.join ' ', (err) ->
 		cmd = 'git checkout master -- ' + files.main.join ' '
-		run cmd, (err) ->
+		run cmd, (err, msg) ->
 			return console.error err if err?
+			console.log msg
 			repo.commit 'wip', (err) ->
 				return console.error err if err?
 				run 'git push origin gh-pages', (err) ->
