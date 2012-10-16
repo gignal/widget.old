@@ -1,0 +1,132 @@
+.gig-outerbox{
+	background: #f2f2f4;
+	margin: 0;
+	border: 1px solid #e25b00;
+	border-top: none;
+	float: left;
+	width: 250px;
+}
+.gig-widbox{
+  padding: 10px 20px;
+  color: #2f2f2f;
+  font-size:15px;
+  font-family:Georgia;
+  line-height:20px;
+  position: relative;
+  text-align:center;
+}
+.gig-outerbox:first-child .gig-widbox{
+   font-size: 22px;
+   line-height: 1.1;
+}
+.gig-widbox p, .gig-widtitle {
+   text-align: left;
+}
+.gig-widimgbox{
+  padding: 10px;
+  position: relative;
+}
+
+.gig-widbox img{
+   max-width: 180px;
+}
+.gig-widtitle{
+  line-height: 18px;
+  margin-top: 7px;
+  font-size: 13px;
+  font-weight: normal;
+  color: #e25b00;
+}
+.gig-widimgbox .gig-imgauthor{
+  position: absolute;
+  left:10px;
+  right:10px;
+  bottom:10px;
+  height:84px;
+  background:url('http://webjay.github.com/rf12/widget/images/red-shade.png') repeat-x center center;
+}
+.gig-imgauthor .gig-widtitle{
+  color: #fff;
+  margin-top:60px;
+  margin-left:10px;
+}
+.gig-avatar{
+  max-width:18px;
+  max-height:18px;
+}
+.gig-checkedin{
+  font-size:10px;
+  font-family:Arial;
+  text-align:right;
+  line-height: 1px;
+  font-weight: bold;
+}
+.gig-actionbtn{
+  background:url(http://webjay.github.com/rf12/widget/images/btn-rpt.jpg) repeat-x center center;
+  border:1px solid #993e00;
+  padding: 0 6px;
+  display: inline-block;
+  color: #3b3b3b;
+  text-shadow:1px 1px #e67d36;
+  text-decoration:none;
+  font-size: 11px;
+}
+.gig-morebtn{
+  padding:9px;
+  padding-bottom: 0;
+  font-size:inherit;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  right:0;
+  z-index: 1234;
+  text-align:center;
+  cursor: pointer;
+}
+.gig-morebtn img {
+    margin-bottom: 2px;
+}
+.gig-power{
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  z-index: 99;
+  opacity: 0.2;
+  -moz-opacity: 0.2;
+  filter:alpha(opacity=2);
+  font-size: 10px;
+  color: #fff;
+  background:#EC6500;
+  padding:5px 5px;
+}
+.gig-power img{
+  vertical-align:middle;
+}
+.gig-power:hover{
+  opacity: 1;
+  -moz-opacity: 1;
+  filter:alpha(opacity=1);
+}
+.gig-actionbtns{
+  position: absolute;
+  right: 7px;
+  bottom: 7px;
+  display: none;
+}
+.gig-actionbtns a {
+    text-decoration: none;
+    color: #EC6500;
+    font-size: 80%;
+}
+.gig-outerbox:hover .gig-actionbtns {
+    display: inline-block; 
+}
+.feature .gig-widbox {
+  font-size: 1.7em;
+  line-height: 1.3;
+}
+
+.img_floatLeft {
+	float: left;
+	margin-right:6px; 
+}
