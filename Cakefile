@@ -4,10 +4,10 @@ UglifyJS = require 'uglify-js2'
 git = require 'gift-plus'
 
 
-run = (cmd) ->
+run = (cmd, callback) ->
 	exec cmd, (err, stdout, stderr) ->
-		throw err if err?
-		console.log stdout + stderr
+		return callback err if err?
+		callback err, stdout + stderr
 
 
 files = 
