@@ -3,7 +3,7 @@ app.collections.Stream = Backbone.Collection.extend({
 	calling: false,
 	parameters: {
 		cid: 0,
-		limit: 10,
+		limit: 20,
 		sinceIdText: 0,
 		sinceIdPhoto: 0
 	},
