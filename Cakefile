@@ -41,4 +41,4 @@ task 'deploy', 'Push to server', ->
 	repo = git '.'
 	repo.checkout 'gh-pages', (err, msg) ->
 		return console.error err if err? 
-		#console.log arguments
+		console.log msg
