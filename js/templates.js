@@ -24,7 +24,7 @@ templates['image'] = template(function (Handlebars,depth0,helpers,partials,data)
   buffer += escapeExpression(stack1) + "\" class=\"modal\"><img src=\"";
   stack1 = depth0.thumb_photo;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "\" alt=\"\"></a>\n	<div class=\"gig-imgauthor\">\n		<h3 class=\"gig-widtitle\">\n			<img src=\"http://webjay.github.com/rf12/widget/images/";
+  buffer += escapeExpression(stack1) + "\" alt=\"\"></a>\n	<div class=\"gig-imgauthor\">\n		<h3 class=\"gig-widtitle\">\n			<img src=\"images/";
   stack1 = depth0.service;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
   buffer += escapeExpression(stack1) + ".png\" alt=\"";
@@ -55,7 +55,7 @@ templates['text'] = template(function (Handlebars,depth0,helpers,partials,data) 
   foundHelper = helpers.linkify;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "linkify", stack1, {hash:{}});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</p>\n	<h3 class=\"gig-widtitle\">\n		<img src=\"http://webjay.github.com/rf12/widget/images/";
+  buffer += "</p>\n	<h3 class=\"gig-widtitle\">\n		<img src=\"images/";
   stack1 = depth0.service;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
   buffer += escapeExpression(stack1) + ".png\" alt=\"";
