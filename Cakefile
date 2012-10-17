@@ -34,6 +34,7 @@ files =
 		'lib/style.css'
 		'lib/all.min.js'
 		'index.html'
+		'images'
 	]
 
 
