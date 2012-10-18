@@ -1,18 +1,19 @@
 fs = require 'fs'
 {exec} = require 'child_process'
 UglifyJS = require 'uglify-js2'
-stylus = require 'stylus'
+#stylus = require 'stylus'
 
 
 run = (cmd, callback) ->
 	exec cmd, (err, stdout, stderr) ->
-		callback err, stdout + stderr
+		throw err if err?
+		console.log stdout + stderr
+		callback?()
 
 
 files = 
 	in: [
 		# components
-		'components/jquery/jquery.js'
 		'components/jquery-masonry/jquery.masonry.min.js'
 		'components/underscore/underscore-min.js'
 		'components/backbone/backbone-min.js'
@@ -46,23 +47,19 @@ task 'compress', 'Compress JavaScript', ->
 
 
 task 'stylus', 'Compress Stylus', ->
-	stylusSrc = fs.readFileSync files.css.in, 'utf8'
-	options = {}
-	stylus.render stylusSrc, options, (err, css) ->
-		return console.error err if err?
-		fs.writeFile files.css.out, result.code, (err) ->
-			console.error err if err?
+	run 'stylus -c < css/style.stylus > lib/style.css'
+	# stylusSrc = fs.readFileSync files.css.in, 'utf8'
+	# options = {}
+	# stylus.render stylusSrc, options, (err, css) ->
+	# 	return console.error err if err?
+	# 	fs.writeFile files.css.out, result.code, (err) ->
+	# 		console.error err if err?
 
 
 task 'deploy', 'Push to server', ->
-	run 'git checkout gh-pages', (err, msg) ->
-		return console.error err, msg if err? 
+	run 'git checkout gh-pages', ->
 		cmd = 'git checkout master -- ' + files.main.join ' '
-		run cmd, (err, msg) ->
-			return console.error err, msg if err?
-			run 'git commit -am "updates from master"', (err, msg) ->
-				return console.error err, msg if err?
-				run 'git push origin gh-pages', (err, msg) ->
-					return console.error err, msg if err?
-					run 'git checkout master', (err, msg) ->
-						return console.error err, msg if err? 
+		run cmd, ->
+			run 'git commit -am "updates from master"', ->
+				run 'git push origin gh-pages', ->
+					run 'git checkout master'
