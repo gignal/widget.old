@@ -78,7 +78,7 @@ table{border-collapse:collapse;border-spacing:0}
 .img_floatLeft{float:left;margin-right:6px}
 .alignCenter{text-align:center}
 .hidden{position:absolute !important;left:-9999px !important;top:-9999px !important}
-.gig-outerbox{background:#f2f2f4;margin:0;border:1px solid #e25b00;border-top:none;border-left:none;width:250px}
+.gig-outerbox{background:#f2f2f4;margin:0;border:1px solid #e25b00;border-top:none;border-left:none;width:250px;float:left}
 .gig-widbox{padding:10px 20px;color:#2f2f2f;font-size:15px;font-family:Georgia;line-height:20px;position:relative;text-align:center}
 .gig-outerbox:first-child .gig-widbox{font-size:22px;line-height:1.1}
 .gig-widbox p,.gig-widtitle{text-align:left}
