@@ -6,7 +6,6 @@ app.views.Event = Backbone.View.extend({
 		// Masonry options
 		this.$el.masonry({
 			itemSelector: '.gig-outerbox',
-			isFitWidth: false,
 			isAnimated: true,
 			animationOptions: {
 				duration: 750,
@@ -15,12 +14,12 @@ app.views.Event = Backbone.View.extend({
 			}
 		});
 	},
-
+	
 	refresh: function () {
-		this.$el.masonry('reload');
-		// hack to make photo box fit
-		this.$el.masonry({
-			itemSelector: '.gig-outerbox'
+		var self = this;
+		// imagesLoaded plugin (https://github.com/desandro/imagesloaded)
+		this.$el.imagesLoaded(function(){
+			self.$el.masonry();
 		});
 	}
 
@@ -29,13 +28,7 @@ app.views.Event = Backbone.View.extend({
 
 app.views.Text = Backbone.View.extend({
 
-	events: {},
-	
 	className: 'gig-outerbox',
-
-	initialize: function () {
-		this.render();
-	},
 
 	render: function () {
 		this.$el.html(app.templates['text'](this.model.toJSON()));
@@ -47,13 +40,7 @@ app.views.Text = Backbone.View.extend({
 
 app.views.Photo = Backbone.View.extend({
 
-	events: {},
-
 	className: 'gig-outerbox',
-
-	initialize: function () {
-		this.render();
-	},
 
 	render: function () {
 		this.$el.html(app.templates['image'](this.model.toJSON()));

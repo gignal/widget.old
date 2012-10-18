@@ -73,7 +73,7 @@ app.collections.Stream = Backbone.Collection.extend({
 			return self.comparator(item.model);
 		});
 		_.each(views_sorted, function (view) {
-			app.view.$el.prepend(view.el);
+			app.view.$el.prepend(view.render().$el).masonry('reload');
 		});
 		app.view.refresh();
 		// reset cache id
