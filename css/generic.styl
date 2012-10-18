@@ -1,0 +1,53 @@
+/* Generic CSS by @Ajmoro (Amr Hussien) */
+
+html
+	font-size: 100%
+	overflow-y: scroll
+	-webkit-text-size-adjust: 100%
+	-ms-text-size-adjust: 100%
+
+body
+	font: 14px/1.5 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, sans-serif
+	font-family: sans-serif
+
+a:focus
+	outline: thin dotted
+
+a:hover,
+a:active
+	outline: 0
+
+.clearfix:before,
+.clearfix:after
+	content: '.'
+	display: block
+	overflow: hidden
+	visibility: hidden
+	font-size: 0
+	line-height: 0
+	width: 0
+	height: 0
+
+.clearfix:after
+	clear: both
+
+.clearfix
+	zoom: 1
+
+.float_left
+	float: left
+
+.float_right
+	float: right
+
+.img_floatLeft
+	float: left
+	margin-right: 6px
+
+.alignCenter
+	text-align: center
+
+.hidden
+	position: absolute !important
+	left: -9999px !important
+	top: -9999px !important
