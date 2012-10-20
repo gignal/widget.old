@@ -4,8 +4,8 @@ app.collections.Stream = Backbone.Collection.extend({
 	parameters: {
 		cid: 0,
 		limit: 20,
-		sinceIdText: 0,
-		sinceIdPhoto: 0
+		sinceTimeText: 0,
+		sinceTimePhoto: 0
 	},
 	
 	initialize: function () {
@@ -44,8 +44,8 @@ app.collections.Stream = Backbone.Collection.extend({
 			});
 			models.push(model);
 			views.push(view);
-			if (model.id > self.parameters.sinceIdText) {
-				self.parameters.sinceIdText = model.id;
+			if (model.get('saved_on') > self.parameters.sinceTimeText) {
+				self.parameters.sinceTimeText = model.get('saved_on');
 			}
 		});
 		// Photos
@@ -60,8 +60,8 @@ app.collections.Stream = Backbone.Collection.extend({
 			});
 			models.push(model);
 			views.push(view);
-			if (model.id > self.parameters.sinceIdPhoto) {
-				self.parameters.sinceIdPhoto = model.id;
+			if (model.get('saved_on') > self.parameters.sinceTimePhoto) {
+				self.parameters.sinceTimePhoto = model.get('saved_on');
 			}
 		});
 		// any data?
