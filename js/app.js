@@ -12,6 +12,7 @@
 			return profilelink;
 		});
 		Handlebars.registerHelper('linkify', function (text) {
+			if (text == null) return;
 			var re_links = /(\b(https?):\/\/[\-A-Z0-9+&@#\/%?=~_|!:,.;]*[\-A-Z0-9+&@#\/%=~_|])/ig;
 			return text.replace(re_links, '<a href="$1" target="_top" class="nodelink">link</a>');
 		});
