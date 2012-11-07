@@ -19,13 +19,13 @@ files =
 		'components/backbone/backbone-min.js'
 		'components/handlebars.js/handlebars.runtime-1.0.0-rc.1.js'
 		# app
-		'js/templates.js'
-		'js/init.js'
-		'js/models.js'
-		'js/collections.js'
-		'js/views.js'
-		'js/router.js'
-		'js/app.js'
+		'javascript/templates.js'
+		'javascript/init.js'
+		'javascript/models.js'
+		'javascript/collections.js'
+		'javascript/views.js'
+		'javascript/router.js'
+		'javascript/app.js'
 	]
 	out: 'lib/all.min.js'
 	main: [
@@ -44,7 +44,7 @@ task 'compress', 'Compress JavaScript', ->
 
 
 task 'stylus', 'Compress Stylus', ->
-	run 'stylus -c css/style.styl --out lib'
+	run 'stylus -c style/style.styl --out lib'
 
 
 task 'deploy', 'Push to server', ->
