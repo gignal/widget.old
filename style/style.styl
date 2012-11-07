@@ -1,3 +1,6 @@
+borderline_color = #C2C2C0
+action_link_color = #696969
+
 //@import "generic"
 @import "organicweb"
 
@@ -12,7 +15,7 @@
 .gig-outerbox
 	background: #f2f2f4
 	margin: 0
-	border: 1px solid #e25b00
+	border: 1px solid borderline_color
 	border-top: none
 	border-left: none
 	width: 250px
@@ -34,28 +37,35 @@
 
 .gig-widbox p, .gig-widtitle
 	text-align: left
+	
+	&.text
+		max-height: 200px
+		overflow: hidden
 
 .gig-widimgbox
-	padding: 10px
+	//padding: 10px
+	height: 185px
 	position: relative
 
 .gig-widbox img
-	max-width: 180px
+	//max-width: 180px
+	max-width: 250px
 
 .gig-widtitle
 	line-height: 18px
 	margin-top: 7px
 	font-size: 13px
 	font-weight: normal
-	color: #e25b00
+	color: action_link_color
 
-.gig-widimgbox .gig-imgauthor
+.gig-widimgbox
+	background-size: cover;
+
+.gig-imgauthor
 	position: absolute
 	left: 10px
 	right: 10px
 	bottom: 10px
-	height: 84px
-	background: url('../images/red-shade.png') repeat-x center center
 
 .gig-imgauthor .gig-widtitle
 	color: #fff
@@ -112,7 +122,7 @@
 
 .gig-actionbtns a
 	text-decoration: none
-	color: #EC6500
+	color: action_link_color
 	font-size: 80%
 
 .gig-outerbox:hover .gig-actionbtns
@@ -140,3 +150,17 @@
 	height: 46px
 	display: block
 	margin: 0 auto
+
+.read-more
+	position: absolute 
+	bottom: 0 left: 0
+	width: 100% 
+	text-align: center 
+	margin: 0
+	padding: 30px 0 
+	/* "transparent" only works here because == rgba(0,0,0,0) */ 
+	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, transparent),color-stop(1, black))
+		background-image: -webkit-linear-gradient(top, transparent, black)
+		background-image: -moz-linear-gradient(top, transparent, black)
+		background-image: -ms-linear-gradient(top, transparent, black)
+		background-image: -o-linear-gradient(top, transparent, black)

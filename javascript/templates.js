@@ -18,13 +18,16 @@ templates['image'] = template(function (Handlebars,depth0,helpers,partials,data)
   var buffer = "", stack1, stack2, stack3, foundHelper, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing;
 
 
-  buffer += "<div class=\"gig-widbox gig-widimgbox\">\n	<a href=\"";
+  buffer += "<div class=\"gig-widbox gig-widimgbox\" style=\"background-image:url('";
+  stack1 = depth0.thumb_photo;
+  stack1 = typeof stack1 === functionType ? stack1() : stack1;
+  buffer += escapeExpression(stack1) + "');\">\n	<!-- <a href=\"";
   stack1 = depth0.large_photo;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
   buffer += escapeExpression(stack1) + "\" class=\"modal\"><img src=\"";
   stack1 = depth0.thumb_photo;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "\" alt=\"\"></a>\n	<div class=\"gig-imgauthor\">\n		<h3 class=\"gig-widtitle\">\n			<img src=\"images/";
+  buffer += escapeExpression(stack1) + "\" alt=\"\"></a> -->\n	<div class=\"gig-imgauthor\">\n		<h3 class=\"gig-widtitle\">\n			<img src=\"images/";
   stack1 = depth0.service;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
   buffer += escapeExpression(stack1) + ".png\" alt=\"";
@@ -50,12 +53,12 @@ templates['text'] = template(function (Handlebars,depth0,helpers,partials,data) 
   var buffer = "", stack1, stack2, stack3, foundHelper, helperMissing=helpers.helperMissing, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "<div class=\"gig-widbox\">\n	<p>";
+  buffer += "<div class=\"gig-widbox\">\n	<p class=\"text\">";
   stack1 = depth0.text;
   foundHelper = helpers.linkify;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "linkify", stack1, {hash:{}});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</p>\n	<h3 class=\"gig-widtitle\">\n		<img src=\"images/";
+  buffer += "</p>\n	<!-- <p class=\"read-more\">…</p> -->\n	<h3 class=\"gig-widtitle\">\n		<img src=\"images/";
   stack1 = depth0.service;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
   buffer += escapeExpression(stack1) + ".png\" alt=\"";

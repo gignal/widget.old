@@ -17,7 +17,7 @@ files =
 		'components/jquery-masonry/jquery.masonry.min.js'
 		'components/underscore/underscore-min.js'
 		'components/backbone/backbone-min.js'
-		'components/handlebars.js/handlebars.runtime-1.0.0-rc.1.js'
+		'components/handlebars/handlebars.runtime-1.0.0-rc.1.js'
 		# app
 		'javascript/templates.js'
 		'javascript/init.js'
@@ -54,3 +54,8 @@ task 'deploy', 'Push to server', ->
 			run 'git commit -am "updates from master"', ->
 				run 'git push origin gh-pages', ->
 					run 'git checkout master'
+
+
+task 'update', 'Update NPM modules and Bower components', ->
+	run 'npm update'
+	run 'bower update'
