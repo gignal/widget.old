@@ -1,6 +1,6 @@
 //jQuery.noConflict();
 
-//jQuery(window).load(function ($) {
+jQuery(window).load(function ($) {
 	
 	app.view = new app.views.Event();
 	new app.Router();
@@ -9,7 +9,7 @@
 		root: '/widget/'
 	});
 
-//});
+});
 
 /*
 // Google Analytics

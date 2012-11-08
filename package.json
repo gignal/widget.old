@@ -4,7 +4,7 @@
 	"devDependencies": {
 		"bower": "0.2.x",
 		"coffee-script": "0.7.x",
-		"uglify-js2": "2.0.x",
+		"uglify-js2": "2.1.x",
 		"stylus": "0.30.x"
 	}
 }
