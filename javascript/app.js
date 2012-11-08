@@ -1,17 +1,15 @@
 //jQuery.noConflict();
 
-(function($){ 
-	$(function(){
-		
+jQuery(document).ready(function($){
+
 		app.view = new app.views.Event();
 		new app.Router();
 		Backbone.history.start({
 			pushState: false,
 			root: '/widget/'
 		});
-		
-	});
-})(jQuery);
+
+});
 
 
 // Google Analytics

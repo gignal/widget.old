@@ -1,5 +1,3 @@
-alert('Hello Dalia');
-
 var app = {
 	collections: {},
 	models: {},
