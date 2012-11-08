@@ -9,7 +9,6 @@ app.collections.Stream = Backbone.Collection.extend({
 	},
 	
 	initialize: function () {
-		alert(3);
 		this.update();
 		this.setIntervalUpdate();
 	},

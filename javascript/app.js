@@ -1,19 +1,15 @@
 //jQuery.noConflict();
 
-jQuery(window).load(function ($) {
+//jQuery(window).load(function ($) {
 	
-	alert(1);
-
 	app.view = new app.views.Event();
 	new app.Router();
 	Backbone.history.start({
 		pushState: false,
 		root: '/widget/'
 	});
-	
-	alert(2);
 
-});
+//});
 
 /*
 // Google Analytics
