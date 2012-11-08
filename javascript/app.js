@@ -6,7 +6,7 @@
 		app.view = new app.views.Event();
 		new app.Router();
 		Backbone.history.start({
-			pushState: true,
+			pushState: false,
 			root: '/widget/'
 		});
 		
