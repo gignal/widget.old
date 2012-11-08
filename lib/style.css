@@ -3,6 +3,7 @@ body{background-color:#f2f2f4}
 #gignal-stream{color:#2f2f2f;font-size:15px;font-family:Georgia;line-height:20px}
 .gignal-outerbox{display:inline-block;background-color:#f2f2f4;border:1px solid #c2c2c0;border-top:none;border-left:none;}
 .gignal-outerbox a{color:#696969;text-decoration:none}
+.gignal-outerbox img{border:none}
 .gignal-outerbox .gignal-text{padding:10px;word-wrap:break-word;max-height:200px;overflow:hidden}
 .gignal-outerbox .gignal-box-footer{height:18px;display:inline-block;padding:10px;line-height:18px;font-size:13px;font-weight:normal;color:#696969;}
 .gignal-outerbox .gignal-box-footer img{margin-right:5px}
