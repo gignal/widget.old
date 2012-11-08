@@ -18,4 +18,3 @@ You need [Bower](http://twitter.github.com/bower/).
 
 * npm install
 * bower install
-* handlebars -o templates/*.handlebars -f javascript/templates.js
