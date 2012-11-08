@@ -1,7 +1,8 @@
 app.Router = Backbone.Router.extend({
 
 	routes: {
-		'event/:id': 'event'
+		'event/:id': 'event',
+		':id': 'event'
 	},
 
 	event: function (id) {

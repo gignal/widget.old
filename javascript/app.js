@@ -5,7 +5,10 @@
 		
 		app.view = new app.views.Event();
 		new app.Router();
-		Backbone.history.start();
+		Backbone.history.start({
+			pushState: true,
+			root: '/widget/'
+		});
 		
 	});
 })(jQuery);
