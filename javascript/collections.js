@@ -93,6 +93,7 @@ app.collections.Stream = Backbone.Collection.extend({
 			add: true,
 			cache: true,
 			timeout: 10000,
+			jsonpCallback: 'callme',
 			data: {
 				limit: this.parameters.limit,
 				sinceIdPhoto: this.parameters.sinceIdPhoto,

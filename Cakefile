@@ -29,7 +29,6 @@ files =
 	main: [
 		'lib/style.css'
 		'lib/all.min.js'
-		'lib/all.js'
 		'index.html'
 		'images'
 	]
