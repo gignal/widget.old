@@ -1,26 +1,86 @@
+background_color = #f2f2f4
 borderline_color = #C2C2C0
 action_link_color = #696969
 
+
 //@import "generic"
-@import "organicweb"
+//@import "organicweb"
 
 
 *
 	margin: 0
 	padding: 0
 
+body
+	background-color: background_color
+
 
 /* Gignal */
 
-.gig-outerbox
-	background: #f2f2f4
-	margin: 0
+#gignal-stream
+	color: #2f2f2f
+	font-size: 15px
+	font-family: Georgia
+	line-height: 20px
+
+.gignal-outerbox
+	display: inline-block
+	background-color: background_color
 	border: 1px solid borderline_color
 	border-top: none
 	border-left: none
-	width: 250px
-	float: left
 
+	a
+		color: action_link_color
+		text-decoration: none
+
+	.gignal-text
+		padding: 10px
+		word-wrap: break-word
+		max-height: 200px
+		overflow: hidden
+		
+	.gignal-box-footer
+		height: 18px
+		display: inline-block
+		padding: 10px
+		line-height: 18px
+		font-size: 13px
+		font-weight: normal
+		color: action_link_color
+		
+		img
+			margin-right: 5px
+		
+		.gignal-avatar
+			max-width: 18px
+			max-height: 18px
+
+.gignal-imagebox
+	height: 185px
+	background-size: cover
+	
+	.gignal-box-footer
+		margin-top: 145px
+
+
+#gignal-footer
+	position: fixed
+	left: 0px
+	bottom: 0px
+	width: 100%
+	height: 88px
+	background-color: #000
+
+#gignal-footer img
+	position: relative
+	top: 23px
+	height: 46px
+	display: block
+	margin: 0 auto
+
+
+/*
 .gig-widbox
 	padding: 10px 20px
 	color: #2f2f2f
@@ -93,27 +153,6 @@ action_link_color = #696969
 	text-decoration: none
 	font-size: 11px
 
-/*
-.gig-morebtn
-	font-size: inherit
-	position: fixed
-	left: 0
-	bottom: 0
-	right: 0
-	z-index: 1234
-	text-align: center
-	cursor: pointer
-	padding: 0 10px
-	height: 48px
-
-.gig-morebtn span
-	display: block
-
-.gig-morebtn img
-	margin-top: 2px
-	margin-bottom: 2px
-*/
-
 .gig-actionbtns
 	position: absolute
 	right: 7px
@@ -158,9 +197,10 @@ action_link_color = #696969
 	text-align: center 
 	margin: 0
 	padding: 30px 0 
-	/* "transparent" only works here because == rgba(0,0,0,0) */ 
 	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, transparent),color-stop(1, black))
 		background-image: -webkit-linear-gradient(top, transparent, black)
 		background-image: -moz-linear-gradient(top, transparent, black)
 		background-image: -ms-linear-gradient(top, transparent, black)
 		background-image: -o-linear-gradient(top, transparent, black)
+
+*/

@@ -14,12 +14,10 @@ run = (cmd, callback) ->
 files = 
 	in: [
 		# components
-		'components/jquery-masonry/jquery.masonry.min.js'
+		'components/isotope/jquery.isotope.min.js'
 		'components/underscore/underscore-min.js'
 		'components/backbone/backbone-min.js'
-		'components/handlebars/handlebars.runtime-1.0.0-rc.1.js'
 		# app
-		'javascript/templates.js'
 		'javascript/init.js'
 		'javascript/models.js'
 		'javascript/collections.js'
@@ -36,7 +34,6 @@ files =
 	]
 
 
-# todo: handlebars
 task 'compress', 'Compress JavaScript', ->
 	result = UglifyJS.minify files.in
 	fs.writeFile files.out, result.code, (err) ->

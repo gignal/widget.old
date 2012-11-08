@@ -18,5 +18,4 @@ You need [Bower](http://twitter.github.com/bower/).
 
 * npm install
 * bower install
-* handlebars -o templates/*.handlebars -f js/templates.js
-* stylus -c < css/style.stylus > lib/style.css
+* handlebars -o templates/*.handlebars -f javascript/templates.js

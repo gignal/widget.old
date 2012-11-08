@@ -9,14 +9,10 @@ app.models.Event = Backbone.Model.extend({
 
 
 app.models.Text = Backbone.Model.extend({
-	
 	idAttribute: 'text_stream_id'
-	
 });
 
 	
 app.models.Photo = Backbone.Model.extend({
-
 	idAttribute: 'photo_stream_id'
-	
 });

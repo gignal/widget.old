@@ -2,26 +2,7 @@
 
 (function($){ 
 	$(function(){
-
-		'use strict';
 		
-		// Handlebars helpers
-		Handlebars.registerHelper('profilelink', function (service, username, user_id) {
-			var profilelink = 'http://' + service + '.com/';
-			profilelink += (username) ? username : user_id;
-			return profilelink;
-		});
-		Handlebars.registerHelper('linkify', function (text) {
-			if (text == null) return;
-			var showChar = 200;
-			var re_links = /(\b(https?):\/\/[\-A-Z0-9+&@#\/%?=~_|!:,.;]*[\-A-Z0-9+&@#\/%=~_|])/ig;
-			text = text.replace(re_links, '<a href="$1" target="_top" class="nodelink">link</a>');
-			// if (text.length > showChar) {
-			// 	text = text.substr(0, showChar).replace(/\s+$/, '') + '…';
-			// }
-			return text
-		});
-			
 		app.view = new app.views.Event();
 		new app.Router();
 		Backbone.history.start();

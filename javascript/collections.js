@@ -25,25 +25,26 @@ app.collections.Stream = Backbone.Collection.extend({
 		var self = this;
 		// set event data
 		app.event.set(response.event);
-		// any nodes?
-		// if (response.text.length === 0 && response.photos.length === 0) {
-		// 	return;
-		// }
 		// build models
 		var models = [];
-		var views = [];
 		// Text
 		_.each(response.text, function (item) {
 			var model = self.get(item.text_stream_id);
+			// already handled?
 			if (typeof model !== 'undefined') {
 				return;
 			}
+			// create
 			model = new app.models.Text(item);
-			var view = new app.views.Text({
+			models.push(model);
+			var view = new app.views.TextBox({
 				model: model
 			});
-			models.push(model);
-			views.push(view);
+			// insert in app view
+			app.view.$el.prepend(view.render().el).isotope('reloadItems').isotope({
+				sortBy: 'original-order'
+			});
+			// is this the latest?
 			if (model.get('saved_on') > self.parameters.sinceTimeText) {
 				self.parameters.sinceTimeText = model.get('saved_on');
 			}
@@ -51,37 +52,37 @@ app.collections.Stream = Backbone.Collection.extend({
 		// Photos
 		_.each(response.photos, function (item) {
 			var model = self.get(item.photo_stream_id);
+			// already handled?
 			if (typeof model !== 'undefined') {
 				return;
 			}
+			// create
 			model = new app.models.Photo(item);
-			var view = new app.views.Photo({
+			models.push(model);
+			var view = new app.views.PhotoBox({
 				model: model
 			});
-			models.push(model);
-			views.push(view);
+			// insert in app view
+			app.view.$el.prepend(view.render().el).isotope('reloadItems').isotope({
+				sortBy: 'original-order'
+			});
+			// is this the latest?
 			if (model.get('saved_on') > self.parameters.sinceTimePhoto) {
 				self.parameters.sinceTimePhoto = model.get('saved_on');
 			}
 		});
-		// any data?
-		if (views.length === 0) {
+		// proceed?
+		if (models.length === 0) {
 			return []
 		}
-		// sort views
-		var views_sorted = _.sortBy(views, function (item) {
-			return self.comparator(item.model);
-		});
-		_.each(views_sorted, function (view) {
-			app.view.$el.prepend(view.render().$el).masonry('reload');
-		});
+		// refresh when photos have been loaded
 		app.view.refresh();
 		// reset cache id
 		this.parameters.cid = 0;
 		// feed collection
 		return models;
 	},
-
+	
 	update: function () {
 		var self = this;
 		if (this.calling) {

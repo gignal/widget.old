@@ -1,8 +1,7 @@
 var app = {
 	collections: {},
 	models: {},
-	views: {},
-	templates: Handlebars.templates
+	views: {}
 };
 
 //app.Backbone = Backbone.noConflict();
