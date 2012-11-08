@@ -14,7 +14,7 @@ app.collections.Stream = Backbone.Collection.extend({
 	},
 
 	url: function () {
-		return app.event.urlRoot + app.event.get('id');
+		return app.event.urlRoot + app.event.get('id') + '?callback=?';
 	},
 		
 	comparator: function (model) {
