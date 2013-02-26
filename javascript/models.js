@@ -1,7 +1,7 @@
 app.models.Event = Backbone.Model.extend({
 
-	urlRoot: 'http://api.gignal.com/event/api/eventId/', // CloudFront
-	//urlRoot: 'http://gignal.com/event/api/eventId/', // direct
+	//urlRoot: 'http://api.gignal.com/event/api/eventId/', // CloudFront
+	urlRoot: 'http://dev.gignal.com/event/api/eventId/', // direct
 
 	idAttribute: 'event_id'
 	
