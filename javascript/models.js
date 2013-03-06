@@ -17,4 +17,3 @@ app.models.Text = Backbone.Model.extend({
 app.models.Photo = Backbone.Model.extend({
 	idAttribute: 'photo_stream_id'
 });
-alert("here");
