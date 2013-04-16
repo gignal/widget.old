@@ -90,9 +90,9 @@ app.collections.Stream = Backbone.Collection.extend({
 		}
 		this.calling = true;
 		this.fetch({
-			add: true,
+			remove: false,
 			cache: true,
-			timeout: 10000,
+			timeout: 15000,
 			jsonpCallback: 'callme',
 			data: {
 				limit: this.parameters.limit,
@@ -103,8 +103,10 @@ app.collections.Stream = Backbone.Collection.extend({
 			success: function () {
 				self.calling = false;
 			},
-			error: function () {
-				self.calling = false;
+			error: function (jqXHR, textStatus, errorThrown) {
+				console.error(textStatus);
+				//console.log(errorThrown);
+				//self.calling = false;
 			}
 		});
 	},

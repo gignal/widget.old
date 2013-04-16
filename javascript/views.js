@@ -69,8 +69,8 @@ app.views.TextBox = Backbone.View.extend({
 	render: function () {
 		this.$el.data('saved_on', this.model.get('saved_on'));
 		this.$el.css('width', app.view.columnWidth);
-		this.$el.html(this.text.el);
-		this.$el.append(this.footer.el);
+		this.$el.html(this.text.$el);
+		this.$el.append(this.footer.$el);
 		return this;
 	}
 	
@@ -93,7 +93,7 @@ app.views.PhotoBox = Backbone.View.extend({
 		this.$el.data('saved_on', this.model.get('saved_on'));
 		this.$el.css('width', app.view.columnWidth);
 		this.$el.css('background-image', 'url(' + this.model.get('thumb_photo') + ')');
-		this.$el.append(this.footer.el);
+		this.$el.append(this.footer.$el);
 		return this;
 	}
 
@@ -106,25 +106,34 @@ app.views.Footer = Backbone.View.extend({
 	className: 'gignal-box-footer',
 	
 	initialize: function () {
-		this.serviceImg = (new Backbone.View).make('img', {
-			src: 'images/' + this.model.get('service') + '.png',
-			alt: 'Service'
+		this.serviceImg = new Backbone.View({
+			tagName: 'img',
+			attributes: {
+				src: 'images/' + this.model.get('service') + '.png',
+				alt: 'Service'
+			}
 		});
-		this.avatar = (new Backbone.View).make('img', {
-			src: this.model.get('user_image'),
-			'class': 'gignal-avatar',
-			alt: 'Avatar'
+		this.avatar = new Backbone.View({
+			tagName: 'img',
+			className: 'gignal-avatar',
+			attributes: {
+				src: this.model.get('user_image'),
+				alt: 'Avatar'
+			}
 		});
-		this.serviceProfileLink = (new Backbone.View).make('a', {
-			href: 'http://' + this.model.get('service') + '.com/' + this.model.get('username')
+		this.serviceProfileLink = new Backbone.View({
+			tagName: 'a',
+			attributes: {
+				href: 'http://' + this.model.get('service') + '.com/' + this.model.get('username')
+			}
 		});
 	},
 
 	render: function () {
-		$(this.serviceProfileLink).append(this.avatar);
-		$(this.serviceProfileLink).append(this.model.get('name'));
-		this.$el.html(this.serviceImg);
-		this.$el.append(this.serviceProfileLink);
+		$(this.serviceProfileLink.$el).append(this.avatar.$el);
+		$(this.serviceProfileLink.$el).append(this.model.get('name'));
+		this.$el.html(this.serviceImg.$el);
+		this.$el.append(this.serviceProfileLink.$el);
 		return this;
 	}
 	

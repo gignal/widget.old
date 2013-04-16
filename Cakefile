@@ -1,6 +1,6 @@
 fs = require 'fs'
 {exec} = require 'child_process'
-UglifyJS = require 'uglify-js2'
+UglifyJS = require 'uglify-js'
 #stylus = require 'stylus'
 
 
@@ -27,16 +27,24 @@ files =
 	]
 	out: 'lib/all.min.js'
 	main: [
-		'lib/style.css'
-		'lib/all.min.js'
+		'lib'
 		'index.html'
 		'images'
 	]
 
 
 task 'compress', 'Compress JavaScript', ->
-	result = UglifyJS.minify files.in
-	fs.writeFile files.out, result.code, (err) ->
+	sourcemap = 'lib/js.map'
+	options =
+		warnings: true,
+		mangle: false,
+		outSourceMap: sourcemap,
+		sourceRoot: 'http://gignal.github.io/widget/'
+	result = UglifyJS.minify files.in, options
+	#console.log result
+	fs.writeFile files.out, result.code + '\n//@ sourceMappingURL=' + sourcemap, (err) ->
+		console.error err if err?
+	fs.writeFile sourcemap, result.map, (err) ->
 		console.error err if err?
 
 

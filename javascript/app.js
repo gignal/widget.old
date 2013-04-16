@@ -1,6 +1,8 @@
-//jQuery.noConflict();
+//$.noConflict();
 
-jQuery(window).load(function ($) {
+jQuery(document).ready(function ($) {
+	
+	Backbone.$ = $;
 	
 	app.view = new app.views.Event();
 	new app.Router();
