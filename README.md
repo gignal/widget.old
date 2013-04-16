@@ -6,11 +6,7 @@ Open static.gignal.com/widget/#event/[event ID]
 
 You need [Bower](http://twitter.github.com/bower/).
 
-	npm install bower
-
-### Install
-
-	bower install gignal-widget
+	npm install -g bower stylus
 
 ### Customize
 
