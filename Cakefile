@@ -41,7 +41,6 @@ task 'compress', 'Compress JavaScript', ->
 		outSourceMap: sourcemap,
 		sourceRoot: 'http://gignal.github.io/widget/'
 	result = UglifyJS.minify files.in, options
-	#console.log result
 	fs.writeFile files.out, result.code + '\n//@ sourceMappingURL=' + sourcemap, (err) ->
 		console.error err if err?
 	fs.writeFile sourcemap, result.map, (err) ->
