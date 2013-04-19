@@ -17,9 +17,10 @@ app.views.Event = Backbone.View.extend({
 	
 	initialize: function () {
 		// set Isotope masonry columnWidth
+		var radix = 10;
 		var mainWidth = this.$el.innerWidth();
-		var columnsAsInt = parseInt(mainWidth / this.columnWidth);
-		this.columnWidth = this.columnWidth + (parseInt((mainWidth - (columnsAsInt * this.columnWidth)) / columnsAsInt) - 1);
+		var columnsAsInt = parseInt(mainWidth / this.columnWidth, radix);
+		this.columnWidth = this.columnWidth + (parseInt((mainWidth - (columnsAsInt * this.columnWidth)) / columnsAsInt, radix) - 1);
 		// init Isotope
 		this.$el.isotope(this.isotoptions);
 	},

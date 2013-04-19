@@ -73,7 +73,7 @@ app.collections.Stream = Backbone.Collection.extend({
 		});
 		// proceed?
 		if (models.length === 0) {
-			return []
+			return [];
 		}
 		// refresh when photos have been loaded
 		app.view.refresh();
@@ -98,7 +98,7 @@ app.collections.Stream = Backbone.Collection.extend({
 				limit: this.parameters.limit,
 				sinceIdPhoto: this.parameters.sinceIdPhoto,
 				sinceIdText: this.parameters.sinceIdText,
-				cid: this.parameters.cid++
+				cid: this.parameters.cid += 1
 			},
 			success: function () {
 				self.calling = false;

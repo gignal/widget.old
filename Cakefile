@@ -25,30 +25,33 @@ files =
 		'javascript/router.js'
 		'javascript/app.js'
 	]
-	out: 'lib/all.min.js'
+	outdir: 'lib/'
+	out: 'app.min.js'
 	main: [
 		'lib'
 		'index.html'
 		'images'
 	]
+		
 
 
 task 'compress', 'Compress JavaScript', ->
-	sourcemap = 'lib/js.map'
+	sourcemap = files.out + '.map'
 	options =
-		warnings: true,
-		mangle: false,
-		outSourceMap: sourcemap,
-		sourceRoot: 'http://gignal.github.io/widget/'
+		warnings: true
+		outSourceMap: sourcemap
+		sourceRoot: ''
 	result = UglifyJS.minify files.in, options
-	fs.writeFile files.out, result.code + '\n//@ sourceMappingURL=' + sourcemap, (err) ->
+	code = result.code
+	#code += '\n//@ sourceMappingURL=' + sourcemap
+	fs.writeFile files.outdir + files.out, code, (err) ->
 		console.error err if err?
-	fs.writeFile sourcemap, result.map, (err) ->
-		console.error err if err?
+	# fs.writeFile files.outdir + sourcemap, result.map, (err) ->
+	# 	console.error err if err?
 
 
 task 'stylus', 'Compress Stylus', ->
-	run 'stylus -c style/style.styl --out lib'
+	run 'stylus -c style/style.styl --out ' + files.outdir
 
 
 task 'deploy', 'Push to server', ->
