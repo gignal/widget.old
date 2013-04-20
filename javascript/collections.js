@@ -103,10 +103,17 @@ app.collections.Stream = Backbone.Collection.extend({
 			success: function () {
 				self.calling = false;
 			},
-			error: function (jqXHR, textStatus, errorThrown) {
-				console.error(textStatus);
-				//console.log(errorThrown);
-				//self.calling = false;
+			error: function (c, response) {
+				var data = {
+					tags: self.parameters
+				};
+				data.tags.eventId = app.event.get('id');
+				Raven.captureMessage(response.statusText, data);
+				if (response.statusText === 'timeout') {
+					self.calling = false;
+				} else {
+					location.reload(true);
+				}
 			}
 		});
 	},
