@@ -4,7 +4,7 @@ Open static.gignal.com/widget/#event/[event ID]
 
 ### Prerequisites
 
-You need [Bower](http://twitter.github.com/bower/).
+You need [Bower](https://github.com/bower/bower).
 
 	npm install -g bower stylus
 
