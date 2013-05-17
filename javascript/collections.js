@@ -13,6 +13,7 @@ app.collections.Stream = Backbone.Collection.extend({
 	},
 
 	url: function () {
+		alert("here")
 		return app.event.urlRoot + app.event.get('uuid') + '?callback=?';
 	},
 		
