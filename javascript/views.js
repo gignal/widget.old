@@ -6,13 +6,7 @@ app.views.Event = Backbone.View.extend({
 	isotoptions: {
 		itemSelector: '.gignal-outerbox',
 		layoutMode: 'masonry',
-		sortBy: 'savedOn',
-		sortAscending: false,
-		getSortData: {
-			savedOn: function (el) {
-				return el.data('saved_on');
-			}
-		}
+		sortAscending: true,
 	},
 	
 	initialize: function () {

@@ -4,8 +4,7 @@ app.collections.Stream = Backbone.Collection.extend({
 	parameters: {
 		cid: 0,
 		limit: 20,
-		sinceTimeText: 0,
-		sinceTimePhoto: 0
+		sinceTime: 0,
 	},
 	
 	initialize: function () {
@@ -14,63 +13,58 @@ app.collections.Stream = Backbone.Collection.extend({
 	},
 
 	url: function () {
-		return app.event.urlRoot + app.event.get('id') + '?callback=?';
+		return app.event.urlRoot + app.event.get('uuid') + '?callback=?';
 	},
 		
-	comparator: function (model) {
-		return model.get('created_on');
-	},
+//	comparator: function (model) {
+//		return model.get('created_on');
+//	},
 	
 	parse: function (response) {
+		console.log(response);
 		var self = this;
 		// set event data
 		app.event.set(response.event);
 		// build models
 		var models = [];
-		// Text
-		_.each(response.text, function (item) {
-			var model = self.get(item.text_stream_id);
+		
+		// Stream
+		_.each(response.stream, function (item) {
+			var model = self.get(item.stream_id);
 			// already handled?
 			if (typeof model !== 'undefined') {
 				return;
 			}
 			// create
-			model = new app.models.Text(item);
+			model = new app.models.Stream(item);
 			models.push(model);
-			var view = new app.views.TextBox({
-				model: model
-			});
+			
+			if(item.type=='text')
+			{
+				var view = new app.views.TextBox({
+					model: model
+				});
+			}
+			
+			else if(item.type=='photo')
+			{
+				var view = new app.views.PhotoBox({
+					model: model
+				});
+			}
+			
 			// insert in app view
 			app.view.$el.prepend(view.render().el).isotope('reloadItems').isotope({
 				sortBy: 'original-order'
 			});
+			
 			// is this the latest?
-			if (model.get('saved_on') > self.parameters.sinceTimeText) {
-				self.parameters.sinceTimeText = model.get('saved_on');
+			if (model.get('created_on') > self.parameters.sinceTime) {
+				self.parameters.sinceTime = model.get('created_on');
 			}
+			
 		});
-		// Photos
-		_.each(response.photos, function (item) {
-			var model = self.get(item.photo_stream_id);
-			// already handled?
-			if (typeof model !== 'undefined') {
-				return;
-			}
-			// create
-			model = new app.models.Photo(item);
-			models.push(model);
-			var view = new app.views.PhotoBox({
-				model: model
-			});
-			// insert in app view
-			app.view.$el.prepend(view.render().el).isotope('reloadItems').isotope({
-				sortBy: 'original-order'
-			});
-			// is this the latest?
-			if (model.get('saved_on') > self.parameters.sinceTimePhoto) {
-				self.parameters.sinceTimePhoto = model.get('saved_on');
-			}
-		});
+		
 		// proceed?
 		if (models.length === 0) {
 			return [];
@@ -96,8 +90,7 @@ app.collections.Stream = Backbone.Collection.extend({
 			jsonpCallback: 'callme',
 			data: {
 				limit: this.parameters.limit,
-				sinceIdPhoto: this.parameters.sinceIdPhoto,
-				sinceIdText: this.parameters.sinceIdText,
+				sinceTime: this.parameters.sinceTime,
 				cid: this.parameters.cid += 1
 			},
 			success: function () {
@@ -107,7 +100,8 @@ app.collections.Stream = Backbone.Collection.extend({
 				var data = {
 					tags: self.parameters
 				};
-				data.tags.eventId = app.event.get('id');
+	
+				data.tags.uuid = app.event.get('uuid');
 				Raven.captureMessage(response.statusText, data);
 				if (response.statusText === 'timeout') {
 					self.calling = false;

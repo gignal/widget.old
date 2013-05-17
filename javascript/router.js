@@ -1,13 +1,13 @@
 app.Router = Backbone.Router.extend({
 
 	routes: {
-		'event/:id': 'event',
-		':id': 'event'
+		'event/:uuid': 'event',
+		':uuid': 'event'
 	},
 
-	event: function (id) {
+	event: function (uuid) {
 		app.event = new app.models.Event({
-			id: id
+			uuid: uuid
 		});
 		app.stream = new app.collections.Stream();
 	}
